@@ -1,70 +1,18 @@
-# Getting Started with Create React App
+# Cosmicrafts Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project contains the frontend of cosmicrafts developen on React for the Internet Computer.
 
-## Available Scripts
+It contains the game build for webgl and all the logic between the game and the backend on IC
 
-In the project directory, you can run:
+## Websockets
 
-### `npm start`
+Follow this [tutorial](https://medium.com/@ilbert/websockets-on-the-ic-getting-started-5f8bcdfaabdc) for the implementation of ic-websocket and this [example](https://github.com/iamenochchirima/ic-websockets-pingpong-mo/tree/main) for the Motoko implementation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**For the current version of ic-websocket the identity has a bug where if you pass it directly the websocket closes. When this bug is fixed on the side of ic-websocket, this repository will be uptaded**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+For the moment the 
+```identity._inner```
+is being sent instead of identity, this causes a known bug where the Principal signing the calls for the direct calls to IC is not the same as the one meking the calls on the websockets.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## `In the Roadmap`
+In a near future we plan to create a webpage and/or a section within the game to display the statistics. While this is done, you can check the statistics directly on [icscan](https://icscan.io/canister/jybso-3iaaa-aaaan-qeima-cai)
