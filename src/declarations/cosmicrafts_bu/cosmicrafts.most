@@ -1,0 +1,59 @@
+// Version: 1.0.0
+type GameStatus =
+  {
+    clientAvatar : Nat;
+    clientIcon : Text;
+    clientLastAlive : Nat64;
+    clientLvl : Nat;
+    clientXp : Nat;
+    gameId : Nat;
+    gameLastUpdate : Text;
+    gameStartTime : Text;
+    gameStep : Nat;
+    gameWinner : Nat;
+    masterAvatar : Nat;
+    masterIcon : Text;
+    masterLastAlive : Nat64;
+    masterLvl : Nat;
+    masterXp : Nat;
+    player1 : Text;
+    player1Name : Text;
+    player2 : Text;
+    player2Name : Text;
+    status : Text;
+    userStatus : Text
+  };
+type GameStatus__1 = GameStatus;
+type GamesPlayed = Nat;
+type GamesWon = Nat;
+type Highscore = Nat;
+type Level = Nat;
+type MatchID = Nat;
+type MatchID__1 = MatchID;
+type P2Status = {gameLastUpdate : Text; lastAlive : Nat64; status : Text};
+type P2Status__1 = P2Status;
+type PlayerPreferences =
+  {gameUserData : Text; language : Nat; playerChar : Text};
+type ScoreCC = Nat;
+type UserId = Principal;
+type UserName = Text;
+type UserWallet = Text;
+type Users =
+  {
+    gamesPlayed : GamesPlayed;
+    gamesWon : GamesWon;
+    highscore : Highscore;
+    id : UserId;
+    level : Level;
+    preferences : PlayerPreferences;
+    score : ScoreCC;
+    tokenized : Text;
+    user : UserName;
+    wallet : UserWallet
+  };
+type Users__1 = Users;
+actor {
+  stable var _gamesP2Data : [(MatchID__1, P2Status__1)];
+  stable var _gamesProgress : [(MatchID__1, GameStatus__1)];
+  stable var users : [Users__1]
+};

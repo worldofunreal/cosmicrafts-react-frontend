@@ -1,0 +1,55 @@
+type Wallet = 
+ record {
+   accountID: text;
+   "principal": principal;
+   walletName: text;
+ };
+type ScoreCC = nat;
+type PlayersCanister = 
+ service {
+   createPlayer: (Player) -> (bool);
+   getAllPlayers: () -> (vec record {
+                               PlayerId;
+                               Player;
+                             }) query;
+   getMyGameData: () -> (opt PlayerGameData) query;
+   getMyPlayer: () -> (opt Player) query;
+   getMyPreferences: () -> (opt PlayerPreferences) query;
+   getPlayer: (principal) -> (opt Player) query;
+   getPlayerGameData: (PlayerId) -> (opt PlayerGameData) query;
+   getPlayerPreferences: (PlayerId) -> (opt PlayerPreferences) query;
+   savePlayerGameData: (PlayerId, PlayerGameData) -> (bool);
+   savePlayerPreferences: (PlayerId, PlayerPreferences) -> (bool);
+ };
+type PlayerPreferences = 
+ record {
+   gamePlayerData: text;
+   language: nat;
+   playerChar: text;
+   playerCharID: nat;
+ };
+type PlayerName = text;
+type PlayerId__1 = principal;
+type PlayerId = principal;
+type PlayerGameData = 
+ record {
+   gamesPlayed: GamesPlayed;
+   gamesWon: GamesWon;
+   highscore: Highscore;
+   id: PlayerId__1;
+   score: ScoreCC;
+ };
+type Player = 
+ record {
+   aid: text;
+   id: PlayerId__1;
+   level: Level;
+   linkedWallets: LinkedWallets;
+   playerName: PlayerName;
+ };
+type LinkedWallets = vec Wallet;
+type Level = nat;
+type Highscore = nat;
+type GamesWon = nat;
+type GamesPlayed = nat;
+service : () -> PlayersCanister

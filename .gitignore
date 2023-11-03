@@ -21,3 +21,15 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+/public/Build
+/public/GameBuild
+/public/TemplateData
+/src/assets/ships_gamenfts/identity.json
+/src/assets/characters_gamenfts/identity.json
+/src/assets/ships_gamenfts/images/
+/src/assets/ships_gamenfts/thumb/
+/src/assets/ships_gamenfts/base/
+/src/assets/characters_gamenfts/images/
+/src/assets/characters_gamenfts/thumb/
+/src/assets/characters_gamenfts/base/

@@ -1,0 +1,25 @@
+type PlayerPreferences = 
+ record {
+   language: nat;
+   playerChar: text;
+ };
+type PlayerName = text;
+type PlayerId = principal;
+type Player = 
+ record {
+   id: PlayerId;
+   level: Level;
+   name: PlayerName;
+ };
+type Level = nat;
+type Cosmicrafts = 
+ service {
+   createPlayer: (text) -> (bool, text);
+   getICPBalance: () -> (record {e8s: nat64;});
+   getPlayer: () -> (opt Player);
+   getPlayerPreferences: () -> (opt PlayerPreferences);
+   savePlayerChar: (text) -> (bool, text);
+   savePlayerLanguage: (nat) -> (bool, text);
+   savePlayerName: (text) -> (bool);
+ };
+service : () -> Cosmicrafts

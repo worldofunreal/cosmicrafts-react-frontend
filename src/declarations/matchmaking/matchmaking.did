@@ -1,0 +1,97 @@
+type WebsocketMessage = 
+ record {
+   client_key: ClientKey;
+   content: blob;
+   is_service_message: bool;
+   sequence_num: nat64;
+   timestamp: nat64;
+ };
+type UserId = principal;
+type SearchStatus = 
+ variant {
+   Assigned;
+   Available;
+   NotAvailable;
+ };
+type PlayersCanister = 
+ service {
+   acceptMatch: (nat) -> (bool, text);
+   addPlayerSearching: () -> (bool, nat);
+   assignPlayer2: (nat) -> (bool, text);
+   cancelMatchmaking: () -> (bool, text);
+   getMatchData: (nat) -> (opt MatchData) query;
+   getMatchSearching: () -> (SearchStatus, nat, text) query;
+   rejectMatch: () -> (bool, text);
+   setGameOver: () -> (bool, text);
+   ws_close: (CanisterWsCloseArguments) -> (CanisterWsCloseResult);
+   ws_get_messages: (CanisterWsGetMessagesArguments) ->
+    (CanisterWsGetMessagesResult) query;
+   ws_message: (CanisterWsMessageArguments) -> (CanisterWsMessageResult);
+   ws_open: (CanisterWsOpenArguments) -> (CanisterWsOpenResult);
+ };
+type PlayerInfo = 
+ record {
+   characterSelected: nat;
+   elo: nat;
+   id: UserId;
+   matchAccepted: bool;
+ };
+type MatchmakingStatus = 
+ variant {
+   Accepted;
+   Accepting;
+   Ended;
+   InGame;
+   Reserved;
+   Searching;
+ };
+type MatchData = 
+ record {
+   gameId: nat;
+   player1: PlayerInfo;
+   player2: opt PlayerInfo;
+   status: MatchmakingStatus;
+ };
+type ClientPrincipal = principal;
+type ClientKey = 
+ record {
+   client_nonce: nat64;
+   client_principal: ClientPrincipal;
+ };
+type CanisterWsOpenResult = 
+ variant {
+   Err: text;
+   Ok;
+ };
+type CanisterWsOpenArguments = record {client_nonce: nat64;};
+type CanisterWsMessageResult = 
+ variant {
+   Err: text;
+   Ok;
+ };
+type CanisterWsMessageArguments = record {msg: WebsocketMessage;};
+type CanisterWsGetMessagesResult = 
+ variant {
+   Err: text;
+   Ok: CanisterOutputCertifiedMessages;
+ };
+type CanisterWsGetMessagesArguments = record {nonce: nat64;};
+type CanisterWsCloseResult = 
+ variant {
+   Err: text;
+   Ok;
+ };
+type CanisterWsCloseArguments = record {client_key: ClientKey;};
+type CanisterOutputMessage = 
+ record {
+   client_key: ClientKey;
+   content: blob;
+   key: text;
+ };
+type CanisterOutputCertifiedMessages = 
+ record {
+   cert: blob;
+   messages: vec CanisterOutputMessage;
+   tree: blob;
+ };
+service : () -> PlayersCanister
